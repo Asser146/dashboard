@@ -18,33 +18,24 @@ class ItemStatusCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-      child: GestureDetector(
-        onTap: () async =>
-            await context.read<ItemDetailsCubit>().toggleDetailsCart(item, 1),
-        child: Container(
-          height: 50.h,
-          decoration: BoxDecoration(
-            color: ColorsManager.secondaryColor,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20.r),
-            ),
+      child: Container(
+        height: 50.h,
+        decoration: BoxDecoration(
+          color: ColorsManager.secondaryColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.r),
           ),
-          width: double.infinity,
-          child: context.watch<ItemDetailsCubit>().isDetailsCart(item)
-              ? Center(
-                  child: Text("In Cart", style: TextStyles.buttonTextWhite),
-                )
-              : Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("\$${item.price!}",
-                          style: TextStyles.buttonTextWhite),
-                      Text("Add to Cart", style: TextStyles.buttonTextWhite),
-                    ],
-                  ),
-                ),
+        ),
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("\$${item.price!}", style: TextStyles.buttonTextWhite),
+              Text("Add to Cart", style: TextStyles.buttonTextWhite),
+            ],
+          ),
         ),
       ),
     );

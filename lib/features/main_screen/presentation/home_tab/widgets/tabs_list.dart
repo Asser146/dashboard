@@ -15,7 +15,7 @@ class TabsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: categories.length, // Number of categories
+      length: categories.length,
       child: TabBar(
         onTap: (index) {
           context.read<HomeCubit>().changeTab(index);
@@ -41,7 +41,7 @@ class TabsList extends StatelessWidget {
                 child: Text(
                   category,
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    // fontSize: 16.sp,
                     color: isSelected
                         ? Colors.white
                         : Theme.of(context).disabledColor,

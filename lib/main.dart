@@ -13,18 +13,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
 
-  await Hive.initFlutter();
-  Hive.registerAdapter(ProductAdapter());
-  HiveServices hiveServices = HiveServices();
-  await hiveServices.init();
+  // await Hive.initFlutter();
+  // Hive.registerAdapter(ProductAdapter());
+  // HiveServices hiveServices = HiveServices();
+  // await hiveServices.init();
 
   const storage = FlutterSecureStorage();
 
-  final String? token = await storage.read(key: "token");
-  final String initialRoute = token != null ? Routes.main : Routes.login;
+  // final String? token = await storage.read(key: "token");
+  // final String initialRoute = token != null ? Routes.main : Routes.login;
   // Bloc.observer = CustomBlocObserver();
 
-  runApp(MyApp(initialRoute: initialRoute));
+  runApp(MyApp(initialRoute: Routes.main));
 }
 
 class MyApp extends StatelessWidget {
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.system,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: _appRouter.generateRoute,
-          initialRoute: initialRoute,
+          initialRoute: Routes.main,
         );
       },
     );

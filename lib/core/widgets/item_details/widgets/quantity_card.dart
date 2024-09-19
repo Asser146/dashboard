@@ -1,9 +1,6 @@
 import 'package:dashboard/core/theming/styles.dart';
-import 'package:dashboard/core/widgets/item_details/item_details_cubit/item_details_cubit.dart';
-import 'package:dashboard/core/widgets/item_details/widgets/quantity_button.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuantityCard extends StatelessWidget {
@@ -16,9 +13,6 @@ class QuantityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final quantity =
-        context.watch<ItemDetailsCubit>().getDetailsQuantity(item.id!);
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       child: Container(
@@ -32,19 +26,17 @@ class QuantityCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Row(
             children: [
-              Text(
+              const Text(
                 'Quantity',
-                style: Theme.of(context).textTheme.titleMedium,
+                // style: Theme.of(context).textTheme.titleMedium,
               ),
               const Spacer(),
-              QuantityButton(item: item, direction: -1),
               SizedBox(width: 20.w),
               Text(
-                quantity.toString(),
+                "10",
                 style: TextStyles.buttonTextWhite,
               ),
               SizedBox(width: 20.w),
-              QuantityButton(item: item, direction: 1),
             ],
           ),
         ),

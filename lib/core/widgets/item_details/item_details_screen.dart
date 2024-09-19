@@ -12,8 +12,7 @@ class ItemDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = context.watch<ItemDetailsCubit>().item;
-
+    final item = context.read<ItemDetailsCubit>().item;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const MyAppBar(),

@@ -12,12 +12,11 @@ class HomeStateInitial extends HomeState {}
 class HomeStateLoading extends HomeState {}
 
 class HomeStateItems extends HomeState {
-  final List<Product> items, fav, cart;
-  const HomeStateItems(
-      {required this.items, required this.fav, required this.cart});
+  final List<Product> items;
+  const HomeStateItems({required this.items});
 
   @override
-  List<Object> get props => [items, fav, cart];
+  List<Object> get props => [items];
 }
 
 class HomeStateTabChanged extends HomeState {
@@ -26,4 +25,12 @@ class HomeStateTabChanged extends HomeState {
 
   @override
   List<Object> get props => [index];
+}
+
+class HomeStateError extends HomeState {
+  final String error;
+  const HomeStateError({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }

@@ -1,6 +1,7 @@
 import 'package:dashboard/core/helpers/item_list_params.dart';
 import 'package:dashboard/core/routing/routes.dart';
 import 'package:dashboard/core/widgets/item_card_list/item_card.dart';
+import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +11,7 @@ class ItemsCardsList extends StatelessWidget {
     required this.params,
   });
 
-  final ItemsListParams params;
+  final List<Product> params;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +25,13 @@ class ItemsCardsList extends StatelessWidget {
             mainAxisSpacing: 8.h,
             childAspectRatio: 0.7,
           ),
-          itemCount: params.list.length,
+          itemCount: params.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () => Navigator.of(context, rootNavigator: true)
-                  .pushNamed(Routes.details, arguments: params.list[index]),
+                  .pushNamed(Routes.details, arguments: params[index]),
               child: ItemCard(
-                item: params.list[index],
-                isFav: params.isFav,
-                toggleFav: params.toggleFav,
+                item: params[index],
               ),
             );
           },

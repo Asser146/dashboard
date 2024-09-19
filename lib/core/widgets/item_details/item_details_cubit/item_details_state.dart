@@ -13,10 +13,8 @@ class ItemDetailsStateLoading extends ItemDetailsState {}
 
 class ItemDetailsStateItems extends ItemDetailsState {
   final List<Product> items;
-  final bool fav, cart;
-  const ItemDetailsStateItems(
-      {required this.items, required this.fav, required this.cart});
+  const ItemDetailsStateItems({required this.items});
 
   @override
-  List<Object> get props => [items, fav, cart];
+  List<Object> get props => [items];
 }

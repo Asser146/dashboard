@@ -15,4 +15,7 @@ abstract class ApiService {
 
   @GET(ApiConstants.categories)
   Future<List<Categories>> getCategories();
+
+  @GET("${ApiConstants.getCategory}{category}")
+  Future<BaseResponse> getProductsbyCategory(@Path("category") String category);
 }

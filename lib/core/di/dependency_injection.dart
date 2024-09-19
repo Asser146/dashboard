@@ -12,5 +12,5 @@ Future<void> setupGetIt() async {
   Dio dio = DioFactory.getDio();
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
   getIt.registerLazySingleton<ProductRepository>(() => ProductRepository());
-  getIt.registerLazySingleton<HiveServices>(() => HiveServices());
+  // getIt.registerLazySingleton<HiveServices>(() => HiveServices());
 }

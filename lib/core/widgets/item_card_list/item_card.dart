@@ -6,21 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemCard extends StatelessWidget {
   final Product item;
-  final bool Function(Product) isFav;
-  final Future<void> Function(Product) toggleFav;
 
   const ItemCard({
     super.key,
     required this.item,
-    required this.isFav,
-    required this.toggleFav,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 281.r,
-      width: 161.r,
+      height: 100.h,
+      width: 100.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(15.r),
@@ -30,7 +26,7 @@ class ItemCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TopBody(item: item, isFav: isFav, toggleFav: toggleFav),
+          TopBody(item: item),
           const Spacer(),
           BottomBody(item: item),
         ],

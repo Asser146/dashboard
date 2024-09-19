@@ -10,7 +10,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 40.h,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(22.sp),
@@ -19,8 +18,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       backgroundColor: ColorsManager.secondaryColor,
       centerTitle: true,
-      title: Text("A-Store",
-          style: TextStyles.buttonTextWhite.copyWith(fontSize: 20.sp)),
+      title: const Text(
+        "A-Store",
+        // style: TextStyles.buttonTextWhite.copyWith(fontSize: 20.sp)
+      ),
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 15.w),
@@ -45,5 +46,5 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(45.h);
+  Size get preferredSize => Size.fromHeight(60.h);
 }

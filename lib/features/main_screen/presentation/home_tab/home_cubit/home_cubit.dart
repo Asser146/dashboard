@@ -1,74 +1,54 @@
-import 'package:dashboard/core/helpers/item_list_params.dart';
-import 'package:dashboard/core/widgets/item_card_list/items_list_operations.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
+import 'package:dashboard/features/main_screen/domain/product_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'home_state.dart';
 
-class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
+class HomeCubit extends Cubit<HomeState> {
   final List<String> categories = ["ALL"];
   int currentTabIndex = 0;
-  HomeCubit() : super(HomeStateInitial()) {
+  final ProductRepository repo;
+  List<Product> allItems = [], categoryItems = [];
+
+  HomeCubit(this.repo) : super(HomeStateInitial()) {
     homeInit();
   }
 
   Future<void> homeInit() async {
-    init();
-    final List<String> cat = await repo.getCategories();
-    categories.addAll(cat);
-    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
+    try {
+      allItems = await repo.getProducts(); // Fetch all products initially
+      final List<String> cat = await repo.getCategories();
+      categories.addAll(cat);
+
+      // Initially show all items
+      categoryItems = allItems;
+      emit(HomeStateItems(items: categoryItems));
+    } catch (e) {
+      // Handle error
+      print('Error during initialization: $e');
+      emit(HomeStateError(error: e.toString()));
+    }
   }
 
-  Future<void> reInitialize() async {
-    emit(HomeStateLoading());
-    init();
-    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
-  }
-
-  void changeTab(int index) {
+  void changeTab(int index) async {
     currentTabIndex = index;
-    emit(HomeStateTabChanged(index: currentTabIndex));
-  }
+    emit(HomeStateTabChanged(index: index));
 
-  List<Product> get itemsToShow {
-    return currentTabIndex == 0
-        ? items
-        : items
-            .where((item) => item.category == categories[currentTabIndex])
-            .toList();
-  }
-
-  Future<void> toggleHomeFavourite(Product item) async {
-    emit(HomeStateLoading());
-    await toggleFavourite(item);
-    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
-  }
-
-  Future<void> toggleHomeCart(Product item, int direction) async {
-    emit(HomeStateLoading());
-    await toggleCart(item, direction);
-    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
-  }
-
-  bool isHomeFavourite(Product item) {
-    emit(HomeStateLoading());
-    return isFav(item);
-  }
-
-  bool isHomeCart(Product item) {
-    emit(HomeStateLoading());
-    return isCart(item);
-  }
-
-  ItemsListParams get params {
-    reInitialize();
-    return ItemsListParams(
-      list: itemsToShow,
-      toggleFav: toggleHomeFavourite,
-      isFav: isHomeFavourite,
-      isCart: isHomeCart,
-      toggleCart: toggleHomeCart,
-    );
+    try {
+      if (currentTabIndex == 0) {
+        categoryItems = allItems;
+      } else {
+        String category =
+            categories[currentTabIndex]; // Get the selected category
+        categoryItems = await repo
+            .getCategoryProducts(category); // Fetch products by category
+      }
+      emit(HomeStateItems(items: categoryItems));
+    } catch (e) {
+      // Handle Dio error
+      print('Error fetching category products: $e');
+      emit(HomeStateError(error: e.toString()));
+    }
   }
 }

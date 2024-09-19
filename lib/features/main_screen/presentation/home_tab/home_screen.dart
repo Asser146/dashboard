@@ -18,13 +18,28 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 5.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Text("Categories",
-                style: Theme.of(context).textTheme.titleLarge),
+            child: const Text(
+              "Categories",
+              // style: Theme.of(context).textTheme.titleLarge
+            ),
           ),
           SizedBox(height: 8.h),
           TabsList(categories: context.read<HomeCubit>().categories),
           SizedBox(height: 8.h),
-          ItemsCardsList(params: context.watch<HomeCubit>().params)
+          BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              if (state is HomeStateInitial) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is HomeStateItems) {
+                return ItemsCardsList(params: state.items); // Show products
+              } else if (state is HomeStateError) {
+                return Center(
+                    child: Text('Error: ${state.error}')); // Show error
+              } else {
+                return SizedBox.shrink(); // Fallback
+              }
+            },
+          )
         ],
       ),
     );
