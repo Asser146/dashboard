@@ -24,11 +24,40 @@ class ItemCard extends StatelessWidget {
         color: Theme.of(context).cardColor,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           TopBody(item: item),
+          SizedBox(height: 3.w),
+          Center(
+            child: Text(
+              item.title!,
+              style: Theme.of(context).textTheme.labelMedium,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           const Spacer(),
-          BottomBody(item: item),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${item.price!.toStringAsFixed(2)} \$",
+                  style: Theme.of(context).textTheme.labelSmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Spacer(),
+                const Icon(Icons.star, color: Colors.orangeAccent),
+                SizedBox(width: 1.w),
+                Text(
+                  "${item.rating!}",
+                  style: Theme.of(context).textTheme.labelSmall,
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );

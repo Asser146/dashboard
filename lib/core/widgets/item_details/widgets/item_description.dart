@@ -1,10 +1,10 @@
 import 'package:dashboard/core/theming/colors.dart';
+import 'package:dashboard/core/theming/styles.dart';
 import 'package:dashboard/core/widgets/item_details/widgets/item_brief.dart';
 import 'package:dashboard/core/widgets/item_details/widgets/item_status_card.dart';
 import 'package:dashboard/core/widgets/item_details/widgets/quantity_card.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemDescription extends StatelessWidget {
@@ -28,7 +28,7 @@ class ItemDescription extends StatelessWidget {
       width: double.infinity,
       child: Padding(
         padding:
-            EdgeInsets.only(left: 10.w, bottom: 10.h, top: 15.h, right: 10.w),
+            EdgeInsets.only(left: 10.w, bottom: 10.h, top: 20.h, right: 10.w),
         child: Column(
           children: [
             Text(
@@ -39,14 +39,13 @@ class ItemDescription extends StatelessWidget {
               children: [
                 Text(
                   "\$${item.price?.toStringAsFixed(2) ?? 'N/A'}",
-                  // style: TextStyles.buttonTextWhite
-                  //     .copyWith(color: ColorsManager.secondaryColor),
+                  style: const TextStyle(color: ColorsManager.secondaryColor),
                 ),
               ],
             ),
-            QuantityCard(item: item),
+            QuantityCard(stock: item.stock ?? 0),
             ItemBrief(item: item),
-            ItemStatusCard(item: item),
+            // ItemStatusCard(item: item),
           ],
         ),
       ),

@@ -17,14 +17,8 @@ class BottomBody extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            item.category!,
-            // style: Theme.of(context).textTheme.labelMedium,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
             item.title!,
-            // style: Theme.of(context).textTheme.labelMedium,
+            style: Theme.of(context).textTheme.labelMedium,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

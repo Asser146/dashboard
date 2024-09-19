@@ -29,14 +29,14 @@ class HomeScreen extends StatelessWidget {
           BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               if (state is HomeStateInitial || state is HomeStateLoading) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (state is HomeStateItems) {
                 return ItemsCardsList(params: state.items); // Show products
               } else if (state is HomeStateError) {
                 return Center(
                     child: Text('Error: ${state.error}')); // Show error
               } else {
-                return SizedBox.shrink(); // Fallback
+                return const SizedBox.shrink(); // Fallback
               }
             },
           )

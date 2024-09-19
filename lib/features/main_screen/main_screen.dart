@@ -1,4 +1,5 @@
 import 'package:dashboard/core/widgets/my_app_bar.dart';
+import 'package:dashboard/features/main_screen/presentation/widgets/drawer.dart';
 import 'package:dashboard/features/main_screen/presentation/widgets/nav_bar_items.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -24,7 +25,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: const MyAppBar(),
+      drawer: const OptionsDrawer(),
+      appBar: const MyAppBar(),
       body: PersistentTabView(
         context,
         controller: _controller,

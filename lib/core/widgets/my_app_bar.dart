@@ -12,15 +12,15 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(22.sp),
-          bottomRight: Radius.circular(22.sp),
+          bottomLeft: Radius.circular(5.sp),
+          bottomRight: Radius.circular(5.sp),
         ),
       ),
       backgroundColor: ColorsManager.secondaryColor,
       centerTitle: true,
-      title: const Text(
-        "A-Store",
-        // style: TextStyles.buttonTextWhite.copyWith(fontSize: 20.sp)
+      title: Text(
+        "A-Store Admin",
+        style: TextStyles.cardDetailsDarkMode,
       ),
       actions: [
         Padding(

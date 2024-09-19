@@ -1,7 +1,7 @@
 import 'package:dashboard/core/widgets/item_details/widgets/item_description.dart';
+import 'package:dashboard/core/widgets/my_app_bar.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemDetailsScreen extends StatelessWidget {
@@ -11,7 +11,7 @@ class ItemDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: const MyAppBar(),
+      appBar: const MyAppBar(),
       body: Column(
         children: [
           SizedBox(

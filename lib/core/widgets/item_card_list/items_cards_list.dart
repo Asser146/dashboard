@@ -22,7 +22,7 @@ class ItemsCardsList extends StatelessWidget {
             crossAxisCount: 4,
             crossAxisSpacing: 8.w,
             mainAxisSpacing: 15.h,
-            childAspectRatio: 0.9,
+            childAspectRatio: 0.91,
           ),
           itemCount: params.length,
           itemBuilder: (BuildContext context, int index) {

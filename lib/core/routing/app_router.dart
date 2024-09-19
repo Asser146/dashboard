@@ -27,8 +27,7 @@ class AppRouter {
                 ));
       case Routes.details:
         final Product item = settings.arguments as Product;
-        return MaterialPageRoute(
-            builder: (_) => ItemDetailsScreen(item: item), settings: settings);
+        return MaterialPageRoute(builder: (_) => ItemDetailsScreen(item: item));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

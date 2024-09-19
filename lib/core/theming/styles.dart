@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextStyles {
   static TextStyle cardDetailsDarkMode = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 5.sp,
     fontFamily: 'Circular Std',
     color: Colors.white,
   );
@@ -13,9 +13,9 @@ class TextStyles {
       cardDetailsDarkMode.copyWith(color: Colors.black);
 
   static TextStyle cardSmallLabelDarkMode = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 5.sp,
     fontFamily: 'Circular Std',
-    fontWeight: FontWeightHelper.bold,
+    fontWeight: FontWeightHelper.medium,
     color: Colors.white,
   );
   static TextStyle cardSmallLabelLightMode =
@@ -31,7 +31,7 @@ class TextStyles {
       titleLargeDarkMode.copyWith(color: Colors.black);
 
   static TextStyle buttonTextWhite = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 5.sp,
     fontWeight: FontWeightHelper.bold,
     fontFamily: 'Circular Std',
     color: Colors.white,

@@ -13,8 +13,8 @@ class CardSkeleton extends StatelessWidget {
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
         child: Container(
-          width: 0.45.sw,
-          height: 178.h,
+          width: 10.sw,
+          height: 10.h,
           decoration: BoxDecoration(
             border: Border.all(
               width: 1.5.w,
