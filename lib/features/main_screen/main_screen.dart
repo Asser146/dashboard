@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
+      // appBar: const MyAppBar(),
       body: PersistentTabView(
         context,
         controller: _controller,

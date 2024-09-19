@@ -1,6 +1,4 @@
 import 'package:dashboard/core/theming/colors.dart';
-import 'package:dashboard/core/theming/styles.dart';
-import 'package:dashboard/core/widgets/item_details/item_details_cubit/item_details_cubit.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,12 +26,18 @@ class ItemStatusCard extends StatelessWidget {
         ),
         width: double.infinity,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("\$${item.price!}", style: TextStyles.buttonTextWhite),
-              Text("Add to Cart", style: TextStyles.buttonTextWhite),
+              Text(
+                "\$${item.price!}",
+                // style: TextStyles.buttonTextWhite
+              ),
+              Text(
+                "Add to Cart",
+                //  style: TextStyles.buttonTextWhite
+              ),
             ],
           ),
         ),

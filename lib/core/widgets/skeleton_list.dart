@@ -11,7 +11,7 @@ class SkeletonList extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: 4,
           crossAxisSpacing: 8.w,
           mainAxisSpacing: 5.h,
           childAspectRatio: 0.7,

@@ -1,6 +1,6 @@
-import 'package:dashboard/core/theming/styles.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuantityCard extends StatelessWidget {
@@ -19,14 +19,14 @@ class QuantityCard extends StatelessWidget {
         height: 50.h,
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(25.r),
         ),
         width: double.infinity,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Row(
             children: [
-              const Text(
+              Text(
                 'Quantity',
                 // style: Theme.of(context).textTheme.titleMedium,
               ),
@@ -34,7 +34,7 @@ class QuantityCard extends StatelessWidget {
               SizedBox(width: 20.w),
               Text(
                 "10",
-                style: TextStyles.buttonTextWhite,
+                // style: Theme.of(context).textTheme.labelMedium,
               ),
               SizedBox(width: 20.w),
             ],

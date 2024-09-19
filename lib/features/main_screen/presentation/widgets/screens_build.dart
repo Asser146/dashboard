@@ -8,10 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 List<Widget> screenBuild() {
-  final repo = getIt<ProductRepository>();
   return [
     BlocProvider(
-      create: (context) => HomeCubit(repo),
+      create: (context) => HomeCubit(getIt<ProductRepository>()),
       child: const HomeScreen(),
     ),
     // BlocProvider(

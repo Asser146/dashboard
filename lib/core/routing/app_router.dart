@@ -1,5 +1,4 @@
 import 'package:dashboard/core/routing/routes.dart';
-import 'package:dashboard/core/widgets/item_details/item_details_cubit/item_details_cubit.dart';
 import 'package:dashboard/core/widgets/item_details/item_details_screen.dart';
 import 'package:dashboard/features/auth/login_cubit/login_cubit.dart';
 import 'package:dashboard/features/auth/login_screen.dart';
@@ -29,11 +28,7 @@ class AppRouter {
       case Routes.details:
         final Product item = settings.arguments as Product;
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => ItemDetailsCubit(item),
-                  child: const ItemDetailsScreen(),
-                ),
-            settings: settings);
+            builder: (_) => ItemDetailsScreen(item: item), settings: settings);
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

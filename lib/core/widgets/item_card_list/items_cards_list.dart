@@ -1,4 +1,3 @@
-import 'package:dashboard/core/helpers/item_list_params.dart';
 import 'package:dashboard/core/routing/routes.dart';
 import 'package:dashboard/core/widgets/item_card_list/item_card.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
@@ -22,8 +21,8 @@ class ItemsCardsList extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             crossAxisSpacing: 8.w,
-            mainAxisSpacing: 8.h,
-            childAspectRatio: 0.7,
+            mainAxisSpacing: 15.h,
+            childAspectRatio: 0.9,
           ),
           itemCount: params.length,
           itemBuilder: (BuildContext context, int index) {

@@ -20,8 +20,6 @@ class HomeCubit extends Cubit<HomeState> {
       allItems = await repo.getProducts(); // Fetch all products initially
       final List<String> cat = await repo.getCategories();
       categories.addAll(cat);
-
-      // Initially show all items
       categoryItems = allItems;
       emit(HomeStateItems(items: categoryItems));
     } catch (e) {
@@ -34,15 +32,13 @@ class HomeCubit extends Cubit<HomeState> {
   void changeTab(int index) async {
     currentTabIndex = index;
     emit(HomeStateTabChanged(index: index));
-
     try {
       if (currentTabIndex == 0) {
         categoryItems = allItems;
       } else {
-        String category =
-            categories[currentTabIndex]; // Get the selected category
-        categoryItems = await repo
-            .getCategoryProducts(category); // Fetch products by category
+        emit(HomeStateLoading());
+        String category = categories[currentTabIndex];
+        categoryItems = await repo.getCategoryProducts(category);
       }
       emit(HomeStateItems(items: categoryItems));
     } catch (e) {

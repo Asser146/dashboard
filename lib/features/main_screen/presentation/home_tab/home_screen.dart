@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 8.h),
           BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
-              if (state is HomeStateInitial) {
+              if (state is HomeStateInitial || state is HomeStateLoading) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is HomeStateItems) {
                 return ItemsCardsList(params: state.items); // Show products
