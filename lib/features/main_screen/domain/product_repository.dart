@@ -7,16 +7,9 @@ class ProductRepository {
   // final HiveServices _hiveServices = getIt<HiveServices>();
   List<Product> products = [];
   ApiService client = getIt<ApiService>();
-  Future<void> fetchAllProducts() async {
-    // _hiveServices.init();
-    // _hiveServices.clearBoxes();
-    // products = _hiveServices.products;
-
-    // if (products.isEmpty) {
-    //   await _hiveServices.addProducts(products);
-    // } else {
+  Future<void> fetchAllProducts(String limit, String skip) async {
     try {
-      BaseResponse response = await client.getAllProducts();
+      BaseResponse response = await client.getAllProducts(limit, skip);
       products = response.products ?? [];
     } catch (e) {
       print('Error fetching products: $e');
@@ -25,33 +18,34 @@ class ProductRepository {
     // }
   }
 
-  Future<List<Product>> getProducts() async {
-    if (products.isEmpty) {
-      await fetchAllProducts();
-    }
+  Future<List<Product>> getProducts(String limit, String skip) async {
+    await fetchAllProducts(limit, skip);
     return products;
   }
 
-  Future<List<String>> getCategories() async {
+  Future<List<List<String>>> getCategories() async {
     try {
       final categories = await client.getCategories();
 
       // Initialize an empty list to store category names
-      List<String> categoriesNames = [];
+      List<String> categoriesNames = [], categoriesSlug = [];
       // Extract the name from each category object and add it to the list
       for (var category in categories) {
         categoriesNames.add(category.name ?? "NA");
+        categoriesSlug.add(category.slug ?? "NA");
       }
-      return categoriesNames;
+      return [categoriesNames, categoriesSlug];
     } catch (e) {
       print('Error fetching categories: $e');
       rethrow; // Rethrow the error after logging it
     }
   }
 
-  Future<List<Product>> getCategoryProducts(String category) async {
+  Future<List<Product>> getCategoryProducts(
+      String category, String limit, String skip) async {
     try {
-      BaseResponse response = await client.getProductsbyCategory(category);
+      BaseResponse response =
+          await client.getProductsbyCategory(category, limit, skip);
       return response.products ?? [];
     } catch (e) {
       print('Error fetching category products: $e');

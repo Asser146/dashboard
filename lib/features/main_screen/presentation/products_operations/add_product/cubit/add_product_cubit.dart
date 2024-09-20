@@ -13,7 +13,8 @@ class AddProductCubit extends Cubit<AddProductState> {
   }
 
   Future<void> init() async {
-    categories = await repo.getCategories();
+    List<List<String>> cat = await repo.getCategories();
+    categories = cat[0];
     emit(state.copyWith(categories: categories));
   }
 

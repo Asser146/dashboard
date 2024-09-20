@@ -12,13 +12,15 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   @GET(ApiConstants.products)
-  Future<BaseResponse> getAllProducts();
+  Future<BaseResponse> getAllProducts(
+      @Query("limit") String limit, @Query("skip") String skip);
 
   @GET(ApiConstants.categories)
   Future<List<Categories>> getCategories();
 
   @GET("${ApiConstants.getCategory}{category}")
-  Future<BaseResponse> getProductsbyCategory(@Path("category") String category);
+  Future<BaseResponse> getProductsbyCategory(@Path("category") String category,
+      @Query("limit") String limit, @Query("skip") String skip);
 
   @POST(ApiConstants.addProduct)
   Future<Product> addProduct(@Body() Product product);

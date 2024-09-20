@@ -9,7 +9,14 @@ abstract class HomeState extends Equatable {
 
 class HomeStateInitial extends HomeState {}
 
+class HomeStateNoMoreItems extends HomeState {
+  final List<Product> items;
+  const HomeStateNoMoreItems({required this.items});
+}
+
 class HomeStateLoading extends HomeState {}
+
+class HomeStateLoadingMore extends HomeState {}
 
 class HomeStateItems extends HomeState {
   final List<Product> items;

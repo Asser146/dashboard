@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 List<Widget> screenBuild() {
   return [
     BlocProvider(
-      create: (context) => HomeCubit(getIt<ProductRepository>()),
+      create: (context) => HomeCubit(getIt<ProductRepository>())..homeInit(),
       child: const HomeScreen(),
     ),
     // BlocProvider(

@@ -24,9 +24,15 @@ class _ApiService implements ApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResponse> getAllProducts() async {
+  Future<BaseResponse> getAllProducts(
+    String limit,
+    String skip,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'skip': skip,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponse>(Options(
@@ -92,9 +98,16 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<BaseResponse> getProductsbyCategory(String category) async {
+  Future<BaseResponse> getProductsbyCategory(
+    String category,
+    String limit,
+    String skip,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'skip': skip,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponse>(Options(

@@ -22,31 +22,22 @@ class HomeScreen extends StatelessWidget {
             child: Text("Categories", style: TextStyles.titleLargeDarkMode),
           ),
           SizedBox(height: 8.h),
-          BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              if (state is HomeStateInitial || state is HomeStateLoading) {
-                return const SizedBox.shrink();
-              } else {
-                return TabsList(
-                    categories: context.read<HomeCubit>().categories);
-              }
-            },
-          ),
+          TabsList(categories: context.watch<HomeCubit>().categories),
           SizedBox(height: 8.h),
-          BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              if (state is HomeStateInitial || state is HomeStateLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is HomeStateItems) {
-                return ItemsCardsList(params: state.items); // Show products
-              } else if (state is HomeStateError) {
-                return Center(
-                    child: Text('Error: ${state.error}')); // Show error
-              } else {
-                return const SizedBox.shrink(); // Fallback
-              }
-            },
-          )
+          ItemsCardsList(params: context.watch<HomeCubit>().categoryProducts),
+          context.watch<HomeCubit>().isLoading
+              ? Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                  child: const CircularProgressIndicator(),
+                )
+              : const SizedBox.shrink(),
+          context.watch<HomeCubit>().isDone
+              ? Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                  child: Text("No More Products",
+                      style: TextStyles.cardDetailsDarkMode),
+                )
+              : const SizedBox.shrink()
         ],
       ),
     );
