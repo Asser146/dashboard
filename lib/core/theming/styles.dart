@@ -22,7 +22,7 @@ class TextStyles {
       cardSmallLabelDarkMode.copyWith(color: Colors.black);
 
   static TextStyle titleLargeDarkMode = TextStyle(
-    fontSize: 24.sp,
+    fontSize: 10.sp,
     fontWeight: FontWeightHelper.semiBold,
     fontFamily: 'Circular Std',
     color: Colors.white,

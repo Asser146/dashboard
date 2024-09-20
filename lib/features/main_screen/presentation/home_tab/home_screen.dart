@@ -1,3 +1,4 @@
+import 'package:dashboard/core/theming/styles.dart';
 import 'package:dashboard/core/widgets/item_card_list/items_cards_list.dart';
 import 'package:dashboard/features/main_screen/presentation/home_tab/home_cubit/home_cubit.dart';
 import 'package:dashboard/features/main_screen/presentation/home_tab/widgets/tabs_list.dart';
@@ -13,15 +14,12 @@ class HomeScreen extends StatelessWidget {
     return Container(
       color: Theme.of(context).primaryColor,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 5.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: const Text(
-              "Categories",
-              // style: Theme.of(context).textTheme.titleLarge
-            ),
+            child: Text("Categories", style: TextStyles.titleLargeDarkMode),
           ),
           SizedBox(height: 8.h),
           BlocBuilder<HomeCubit, HomeState>(
