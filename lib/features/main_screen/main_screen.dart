@@ -25,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const OptionsDrawer(),
+      drawer: OptionsDrawer(context: context),
       appBar: const MyAppBar(),
       body: PersistentTabView(
         context,

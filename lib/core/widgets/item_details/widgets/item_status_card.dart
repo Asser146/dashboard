@@ -1,7 +1,6 @@
 import 'package:dashboard/core/theming/colors.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemStatusCard extends StatelessWidget {
@@ -34,7 +33,7 @@ class ItemStatusCard extends StatelessWidget {
                 "\$${item.price!}",
                 // style: TextStyles.buttonTextWhite
               ),
-              Text(
+              const Text(
                 "Add to Cart",
                 //  style: TextStyles.buttonTextWhite
               ),

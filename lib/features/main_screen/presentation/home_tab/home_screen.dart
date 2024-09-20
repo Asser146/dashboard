@@ -24,7 +24,16 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8.h),
-          TabsList(categories: context.read<HomeCubit>().categories),
+          BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              if (state is HomeStateInitial || state is HomeStateLoading) {
+                return const SizedBox.shrink();
+              } else {
+                return TabsList(
+                    categories: context.read<HomeCubit>().categories);
+              }
+            },
+          ),
           SizedBox(height: 8.h),
           BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {

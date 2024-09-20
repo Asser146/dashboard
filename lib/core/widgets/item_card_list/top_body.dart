@@ -1,8 +1,6 @@
-import 'package:dashboard/core/theming/colors.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class TopBody extends StatelessWidget {
   const TopBody({

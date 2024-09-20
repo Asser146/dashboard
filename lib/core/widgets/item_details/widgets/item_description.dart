@@ -1,7 +1,5 @@
 import 'package:dashboard/core/theming/colors.dart';
-import 'package:dashboard/core/theming/styles.dart';
 import 'package:dashboard/core/widgets/item_details/widgets/item_brief.dart';
-import 'package:dashboard/core/widgets/item_details/widgets/item_status_card.dart';
 import 'package:dashboard/core/widgets/item_details/widgets/quantity_card.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';

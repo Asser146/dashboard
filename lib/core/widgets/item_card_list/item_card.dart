@@ -1,4 +1,3 @@
-import 'package:dashboard/core/widgets/item_card_list/bottom_body.dart';
 import 'package:dashboard/core/widgets/item_card_list/top_body.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:flutter/material.dart';

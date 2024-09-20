@@ -2,23 +2,14 @@ import 'package:dashboard/core/di/dependency_injection.dart';
 import 'package:dashboard/core/routing/app_router.dart';
 import 'package:dashboard/core/routing/routes.dart';
 import 'package:dashboard/core/theming/theme_data.dart';
-import 'package:dashboard/features/main_screen/data/product.dart';
-import 'package:dashboard/features/main_screen/domain/hive_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
 
-  // await Hive.initFlutter();
-  // Hive.registerAdapter(ProductAdapter());
-  // HiveServices hiveServices = HiveServices();
-  // await hiveServices.init();
-
-  // const storage = FlutterSecureStorage();
+  // const stoage = FlutterSecureStorage();
 
   // final String? token = await storage.read(key: "token");
   // final String initialRoute = token != null ? Routes.main : Routes.login;

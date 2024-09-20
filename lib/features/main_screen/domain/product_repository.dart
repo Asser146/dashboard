@@ -2,7 +2,6 @@ import 'package:dashboard/core/di/dependency_injection.dart';
 import 'package:dashboard/core/networking/api_service.dart';
 import 'package:dashboard/features/main_screen/data/base_response.dart';
 import 'package:dashboard/features/main_screen/data/product.dart';
-import 'package:dashboard/features/main_screen/domain/hive_services.dart';
 
 class ProductRepository {
   // final HiveServices _hiveServices = getIt<HiveServices>();
@@ -28,7 +27,6 @@ class ProductRepository {
 
   Future<List<Product>> getProducts() async {
     if (products.isEmpty) {
-      print("Products is empty");
       await fetchAllProducts();
     }
     return products;
