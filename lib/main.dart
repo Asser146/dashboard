@@ -18,7 +18,7 @@ void main() async {
   // HiveServices hiveServices = HiveServices();
   // await hiveServices.init();
 
-  const storage = FlutterSecureStorage();
+  // const storage = FlutterSecureStorage();
 
   // final String? token = await storage.read(key: "token");
   // final String initialRoute = token != null ? Routes.main : Routes.login;

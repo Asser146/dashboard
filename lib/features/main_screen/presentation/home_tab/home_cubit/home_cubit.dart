@@ -34,7 +34,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeStateTabChanged(index: index));
     try {
       if (currentTabIndex == 0) {
-        categoryItems = allItems;
+        categoryItems = await repo.getProducts();
       } else {
         emit(HomeStateLoading());
         String category = categories[currentTabIndex];

@@ -1,6 +1,7 @@
 import 'package:dashboard/core/networking/api_constants.dart';
 import 'package:dashboard/features/main_screen/data/base_response.dart';
 import 'package:dashboard/features/main_screen/data/categories.dart';
+import 'package:dashboard/features/main_screen/data/product.dart';
 import 'package:dio/dio.dart';
 
 import 'package:retrofit/retrofit.dart';
@@ -18,4 +19,7 @@ abstract class ApiService {
 
   @GET("${ApiConstants.getCategory}{category}")
   Future<BaseResponse> getProductsbyCategory(@Path("category") String category);
+
+  @POST(ApiConstants.addProduct)
+  Future<Product> addProduct(@Body() Product product);
 }

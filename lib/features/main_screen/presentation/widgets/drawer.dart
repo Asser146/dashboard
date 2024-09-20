@@ -1,4 +1,7 @@
+import 'package:dashboard/core/di/dependency_injection.dart';
 import 'package:dashboard/core/theming/colors.dart';
+import 'package:dashboard/features/main_screen/data/product.dart';
+import 'package:dashboard/features/main_screen/domain/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,9 +23,17 @@ class OptionsDrawer extends StatelessWidget {
 
   buildsupportListTiles() {
     List<Widget> supportWidgets = [
-      Text(
-        "Add Product",
-        style: TextStyles.cardDetailsDarkMode,
+      GestureDetector(
+        onTap: () async {
+          ProductRepository repo = getIt<ProductRepository>();
+          Product item = Product();
+          item.title = "test1";
+          await repo.addProduct(item);
+        },
+        child: Text(
+          "Add Product",
+          style: TextStyles.cardDetailsDarkMode,
+        ),
       ),
       Text(
         "Delete Product",

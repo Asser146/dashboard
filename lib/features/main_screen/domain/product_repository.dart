@@ -28,6 +28,7 @@ class ProductRepository {
 
   Future<List<Product>> getProducts() async {
     if (products.isEmpty) {
+      print("Products is empty");
       await fetchAllProducts();
     }
     return products;
@@ -56,6 +57,16 @@ class ProductRepository {
       return response.products ?? [];
     } catch (e) {
       print('Error fetching category products: $e');
+      rethrow; // Rethrow the error after logging it
+    }
+  }
+
+  Future<void> addProduct(Product item) async {
+    try {
+      Product product = await client.addProduct(item);
+      products.insert(0, product);
+    } catch (e) {
+      print('Error adding : $e');
       rethrow; // Rethrow the error after logging it
     }
   }
