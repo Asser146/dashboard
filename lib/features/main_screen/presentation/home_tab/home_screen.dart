@@ -24,7 +24,9 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 8.h),
           TabsList(categories: context.watch<HomeCubit>().categories),
           SizedBox(height: 8.h),
-          ItemsCardsList(params: context.watch<HomeCubit>().categoryProducts),
+          ItemsCardsList(
+              list: context.watch<HomeCubit>().categoryProducts,
+              controller: context.watch<HomeCubit>().scrollController),
           context.watch<HomeCubit>().isLoading
               ? Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.h),

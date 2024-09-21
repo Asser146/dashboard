@@ -24,4 +24,7 @@ abstract class ApiService {
 
   @POST(ApiConstants.addProduct)
   Future<Product> addProduct(@Body() Product product);
+
+  @GET(ApiConstants.searchProducts)
+  Future<BaseResponse> searchProducts(@Query("q") String query);
 }

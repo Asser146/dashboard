@@ -12,12 +12,13 @@ List<PersistentBottomNavBarItem> navBarsItems(Color hintColor) {
       activeColorPrimary: ColorsManager.secondaryColor,
       inactiveColorPrimary: hintColor,
     ),
-    // PersistentBottomNavBarItem(
-    //   icon: const Icon(CupertinoIcons.search),
-    //   title: "Search",
-    //   activeColorPrimary: ColorsManager.secondaryColor,
-    //   inactiveColorPrimary: hintColor,
-    // ),
+    PersistentBottomNavBarItem(
+      icon: const Icon(CupertinoIcons.search),
+      title: "Search",
+      iconSize: 7.sp,
+      activeColorPrimary: ColorsManager.secondaryColor,
+      inactiveColorPrimary: hintColor,
+    ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.person),
       title: "Profile",

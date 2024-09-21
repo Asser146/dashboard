@@ -9,10 +9,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ItemsCardsList extends StatelessWidget {
   const ItemsCardsList({
     super.key,
-    required this.params,
+    required this.list,
+    required this.controller,
   });
 
-  final List<Product> params;
+  final List<Product> list;
+  final ScrollController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +28,27 @@ class ItemsCardsList extends StatelessWidget {
             mainAxisSpacing: 15.h,
             childAspectRatio: 0.91,
           ),
-          itemCount: params.length,
-          controller: context.watch<HomeCubit>().scrollController,
+          itemCount: list.length,
+          controller: controller,
           itemBuilder: (BuildContext context, int index) {
-            if (index < context.watch<HomeCubit>().allItems.length) {
+            if (index < list.length) {
               return GestureDetector(
                 onTap: () => Navigator.of(context, rootNavigator: true)
-                    .pushNamed(Routes.details, arguments: params[index]),
+                    .pushNamed(Routes.details, arguments: list[index]),
                 child: ItemCard(
-                  item: params[index],
+                  item: list[index],
                 ),
               );
             } else {
               return const CircularProgressIndicator();
             }
+            // return GestureDetector(
+            //   onTap: () => Navigator.of(context, rootNavigator: true)
+            //       .pushNamed(Routes.details, arguments: list[index]),
+            //   child: ItemCard(
+            //     item: list[index],
+            //   ),
+            // );
           },
         ),
       ),

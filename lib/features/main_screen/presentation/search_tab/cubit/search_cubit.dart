@@ -1,65 +1,60 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:my_store/core/helpers/item_list_params.dart';
-// import 'package:my_store/features/main_screen/data/item.dart';
-// import 'package:my_store/core/widgets/item_card_list/items_list_operations.dart';
+import 'package:dashboard/features/main_screen/data/product.dart';
+import 'package:dashboard/features/main_screen/domain/product_repository.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
-// part 'search_state.dart';
+part 'search_state.dart';
 
-// class SearchCubit extends Cubit<SearchState> with ItemsListOperations {
-//   List<Item> filteredItems = [];
+class SearchCubit extends Cubit<SearchState> {
+  List<Product> filteredItems = [];
+  final ProductRepository repo;
+  final scrollController = ScrollController();
 
-//   SearchCubit() : super(SearchInitial());
+  final PublishSubject<String> filterSubject = PublishSubject<String>();
 
-//   Future<void> searchInit() async {
-//     emit(SearchLoading());
-//     init();
-//     emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
-//   }
+  SearchCubit(this.repo) : super(SearchInitial()) {
+    // Listen to search query changes
+    filterSubject
+        .debounceTime(const Duration(milliseconds: 500))
+        .listen((query) async {
+      // Emit loading state
+      emit(SearchLoading());
+      try {
+        if (query.isEmpty) {
+          filteredItems.clear();
+          emit(SearchInitial());
+        } else {
+          filteredItems = await repo.searchProducts(query);
+          filteredItems.isEmpty
+              ? emit(SearchEmpty())
+              : emit(SearchLoaded(items: filteredItems));
+        }
+      } catch (e) {
+        emit(SearchError(message: e.toString()));
+      }
+    });
+    // setUpScrollListener();
+  }
 
-//   void search(List<Item> items, String query) {
-//     if (query.isEmpty) {
-//       filteredItems = [];
-//       emit(SearchInitial());
-//     } else {
-//       filteredItems = items.where((item) {
-//         return item.title?.toLowerCase().contains(query.toLowerCase()) ?? false;
-//       }).toList();
-//       emit(
-//           SearchLoaded(items: filteredItems, fav: favourites, cart: cartItems));
-//     }
-//   }
+  // void setUpScrollListener() {
+  //   scrollController.addListener(() async {
+  //     if (scrollController.position.pixels ==
+  //         scrollController.position.maxScrollExtent) {
+  //       // await loadMoreProducts();
+  //     }
+  //   });
+  // }
 
-//   Future<void> toggleSearchFavourite(Item item) async {
-//     emit(SearchLoading());
-//     await toggleFavourite(item);
-//     emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
-//   }
+  // Call this method whenever the user types a new query
+  void search(String query) {
+    filterSubject.add(query); // Add the query to the filterSubject stream
+  }
 
-//   Future<void> toggleSearchCart(Item item, int direction) async {
-//     emit(SearchLoading());
-//     await toggleCart(item, direction);
-//     emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
-//   }
-
-//   bool isSearchFavourite(Item item) {
-//     emit(SearchLoading());
-//     return isFav(item);
-//   }
-
-//   bool isSearchCart(Item item) {
-//     emit(SearchLoading());
-//     return isCart(item);
-//   }
-
-//   ItemsListParams get params {
-//     searchInit();
-//     return ItemsListParams(
-//       list: filteredItems,
-//       toggleFav: toggleSearchFavourite,
-//       isFav: isSearchFavourite,
-//       isCart: isSearchCart,
-//       toggleCart: toggleSearchCart,
-//     );
-//   }
-// }
+  @override
+  Future<void> close() {
+    filterSubject.close(); // Close the subject when cubit is disposed
+    return super.close();
+  }
+}

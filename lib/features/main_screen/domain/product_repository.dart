@@ -62,4 +62,14 @@ class ProductRepository {
       rethrow; // Rethrow the error after logging it
     }
   }
+
+  Future<List<Product>> searchProducts(String query) async {
+    try {
+      BaseResponse response = await client.searchProducts(query);
+      return response.products ?? [];
+    } catch (e) {
+      print('Error Searching for products: $e');
+      rethrow; // Rethrow the error after logging it
+    }
+  }
 }
